@@ -4,6 +4,6 @@
  * @author Brendan Armani
  * @version 1.0
  */
-public enum Matches {
+public enum MatchType {
   BIRTHDAY, FRIENDSHIP, ROMANTIC
 }
