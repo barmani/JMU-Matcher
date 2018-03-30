@@ -5,5 +5,7 @@
  * @version 1.0
  */
 public enum MatchType {
+  
   BIRTHDAY, FRIENDSHIP, ROMANTIC
+  
 }

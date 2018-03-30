@@ -5,7 +5,7 @@
  * @author Brendan Armani
  * @version 1.0
  */
-public class Match {
+public abstract class Match {
   private MatchPerson matcher;
   private MatchPerson matchee;
   private double percentage;
@@ -22,4 +22,6 @@ public class Match {
     this.matchee = matchee;
     this.percentage = percentage;
   }
+  
+  public abstract String toString();
 }
