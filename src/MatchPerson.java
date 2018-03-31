@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 
 /**
@@ -14,7 +13,7 @@ public class MatchPerson {
   // personal information as appears in form
   private String name;
   private String email;
-  private Date birthday;
+  private String birthday;
   private Gender gender;
   private Preference preference;
   
@@ -26,6 +25,23 @@ public class MatchPerson {
   private ArrayList<Match> romanticMatches;
   
   /**
+   * Default constructor. Makes "empty" MatchPerson object.
+   */
+  public MatchPerson() {
+    setName("");
+    setEmail("");
+    setBirthday(birthday);
+    setGender(gender);
+    setPreference(preference);
+    setMatchType(matchType);
+    
+    setAnswers(new HashMap<Integer, Integer>());
+    setBdayMatches(new ArrayList<Match>());
+    setFriendshipMatches(new ArrayList<Match>());
+    setRomanticMatches(new ArrayList<Match>()); 
+  }
+  
+  /**
    * Constructor for person. Read from spreadsheet.
    * 
    * @param name first and last name
@@ -35,7 +51,7 @@ public class MatchPerson {
    * @param preference sexual identification
    * @param matchType match type paid for
    */
-  public MatchPerson(String name, String email, Date birthday, Gender gender, 
+  public MatchPerson(String name, String email, String birthday, Gender gender, 
       Preference preference, MatchType matchType) {
     setName(name);
     setEmail(email);
@@ -74,11 +90,11 @@ public class MatchPerson {
     this.email = email;
   }
 
-  public Date getBirthday() {
+  public String getBirthday() {
     return birthday;
   }
 
-  public void setBirthday(Date birthday) {
+  public void setBirthday(String birthday) {
     this.birthday = birthday;
   }
 
@@ -128,6 +144,20 @@ public class MatchPerson {
 
   public void setRomanticMatches(ArrayList<Match> romanticMatches) {
     this.romanticMatches = romanticMatches;
+  }
+  
+  /**
+   * String representation of MatchPerson object.
+   */
+  public String toString() {
+    StringBuilder builder = new StringBuilder();
+    builder.append("Name: " + name + "\n");
+    builder.append("Email: " + email + "\n");
+    builder.append("Birthday: " + birthday + "\n");
+    builder.append("Gender: " + gender + "\n");
+    builder.append("Sexual Identity: " + preference + "\n");
+    builder.append("Matching for: " + matchType + "\n");
+    return builder.toString();
   }
     
 }
