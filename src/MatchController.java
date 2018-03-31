@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class MatchController {
    
   /**
-   * Reads csv file, initiates match calculations, and writes to a text file.
+   * Reads tsv file, initiates match calculations, and writes to a text file.
    * @param args command line arguments
    * @throws IOException ioe
    */
@@ -16,7 +16,7 @@ public class MatchController {
       ArrayList<MatchPerson> allPeople = new ArrayList<MatchPerson>();
 
       File spreadsheet = new File(args[0]);
-      // get answers in ArrayList from csv
+      // get answers in ArrayList from tsv
       ArrayList<String[]> allAnswers = MatchCalculation.fillAnswersArray(spreadsheet);
       String[] questions = allAnswers.get(0); // store questions titles (may or may not need)
       allAnswers.remove(0); // remove titles

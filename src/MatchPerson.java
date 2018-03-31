@@ -158,7 +158,7 @@ public class MatchPerson {
     builder.append("Sexual Identity: " + preference + "\n");
     builder.append("Matching for: " + matchType + "\n");
     for (Integer i: answers.keySet()) {
-      builder.append("Question" + i + "answer: " + answers.get(i) + "\n");
+      builder.append("Question " + i + " answer: " + answers.get(i) + "\n");
     }
     return builder.toString();
   }

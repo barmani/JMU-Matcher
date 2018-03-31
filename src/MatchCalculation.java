@@ -17,7 +17,7 @@ public class MatchCalculation {
   /**
    * Fill in the responses from the survey takers.
    * 
-   * @param spreadsheet the csv unsplit spreadsheet
+   * @param spreadsheet the tsv unsplit spreadsheet
    * @throws IOException ioe
    */
   public static ArrayList<String[]> fillAnswersArray(File spreadsheet) throws IOException {
@@ -26,7 +26,7 @@ public class MatchCalculation {
     
     BufferedReader reader = new BufferedReader(new FileReader(spreadsheet));
     while ((line = reader.readLine()) != null) {
-      String[] arr = line.split(",");
+      String[] arr = line.split("\t");
       allAnswers.add(arr);
     }
     reader.close();
@@ -87,7 +87,13 @@ public class MatchCalculation {
           break;
           
         default:    // question answer
-          answers.put(i - 7, responses[i].charAt(0));
+          if (responses[i].length() > 0) {
+            if (responses[i].charAt(0) == '\"') {
+              answers.put(i - 6, responses[i].charAt(1));
+            } else {
+              answers.put(i - 6, responses[i].charAt(0));
+            }
+          }
           break;
         
       }
