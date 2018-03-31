@@ -18,7 +18,7 @@ public class MatchPerson {
   private Preference preference;
   
   // match data
-  private HashMap<Integer, Integer> answers;
+  private HashMap<Integer, Character> answers;
   private MatchType matchType;
   private ArrayList<Match> bdayMatches;
   private ArrayList<Match> friendshipMatches;
@@ -35,7 +35,7 @@ public class MatchPerson {
     setPreference(preference);
     setMatchType(matchType);
     
-    setAnswers(new HashMap<Integer, Integer>());
+    setAnswers(new HashMap<Integer, Character>());
     setBdayMatches(new ArrayList<Match>());
     setFriendshipMatches(new ArrayList<Match>());
     setRomanticMatches(new ArrayList<Match>()); 
@@ -60,17 +60,17 @@ public class MatchPerson {
     setPreference(preference);
     setMatchType(matchType);
     
-    setAnswers(new HashMap<Integer, Integer>());
+    setAnswers(new HashMap<Integer, Character>());
     setBdayMatches(new ArrayList<Match>());
     setFriendshipMatches(new ArrayList<Match>());
     setRomanticMatches(new ArrayList<Match>());    
   }
   
-  public HashMap<Integer, Integer> getAnswers() {
+  public HashMap<Integer, Character> getAnswers() {
     return answers;
   }
   
-  public void setAnswers(HashMap<Integer, Integer> answers) {
+  public void setAnswers(HashMap<Integer, Character> answers) {
     this.answers = answers;
   }
 
@@ -157,6 +157,9 @@ public class MatchPerson {
     builder.append("Gender: " + gender + "\n");
     builder.append("Sexual Identity: " + preference + "\n");
     builder.append("Matching for: " + matchType + "\n");
+    for (Integer i: answers.keySet()) {
+      builder.append("Question" + i + "answer: " + answers.get(i) + "\n");
+    }
     return builder.toString();
   }
     

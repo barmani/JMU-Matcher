@@ -3,6 +3,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Methods to help calculate matches.
@@ -25,7 +26,7 @@ public class MatchCalculation {
     
     BufferedReader reader = new BufferedReader(new FileReader(spreadsheet));
     while ((line = reader.readLine()) != null) {
-      String[] arr = line.split("\",\"");
+      String[] arr = line.split(",");
       allAnswers.add(arr);
     }
     reader.close();
@@ -40,7 +41,7 @@ public class MatchCalculation {
    */
   public static MatchPerson parseResponses(String[] responses) {
     MatchPerson newPerson = new MatchPerson();
-    
+    HashMap<Integer, Character> answers = new HashMap<Integer, Character>(); 
     for (int i = 1; i < responses.length; i++) { // start at 1 to skip timestamp
       switch(i) {
         
@@ -76,19 +77,25 @@ public class MatchCalculation {
           break;
           
         case 6:
-          if (responses[i].startsWith("Romantic")) {
+          if (responses[i].startsWith("\"Romantic")) {
             newPerson.setMatchType(MatchType.ROMANTIC);
-          } else if (responses[i].startsWith("Friendships")) {
+          } else if (responses[i].startsWith("\"Friendships")) {
             newPerson.setMatchType(MatchType.FRIENDSHIP);
           } else {
             newPerson.setMatchType(MatchType.BIRTHDAY);
           }
           break;
-        default: 
+          
+        default:    // question answer
+          answers.put(i - 7, responses[i].charAt(0));
+          break;
         
       }
+      newPerson.setAnswers(answers);
     }
     return newPerson;
   }
+  
+  
   
 }
