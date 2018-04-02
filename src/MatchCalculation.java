@@ -115,13 +115,16 @@ public class MatchCalculation {
   public static ArrayList<Match> findMatches(MatchPerson matcher, ArrayList<MatchPerson> people) {
     PriorityQueue<Match> matches = new PriorityQueue<Match>();
     for (MatchPerson matchee: people) {
-      Match match = makeMatch(matcher, matchee);
+      if (!matchee.equals(matcher)) {
+        Match match = makeMatch(matcher, matchee);
+        System.out.println(match);
+      }
     }
     return null;
   }
   
   public static Match makeMatch(MatchPerson matcher, MatchPerson matchee) {
-    int matchCount = 0;
+    double matchCount = 0.0;
     for (Integer question: matcher.getAnswers().keySet()) {
       if (matcher.getAnswers().get(question).equals(matchee.getAnswers().get(question))) {
         matchCount++;
