@@ -4,6 +4,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.PriorityQueue;
 
 /**
  * Methods to help calculate matches.
@@ -14,6 +15,8 @@ import java.util.HashMap;
  */
 public class MatchCalculation {
 
+  public static final int QUESTION_AMOUNT = 29;
+  
   /**
    * Fill in the responses from the survey takers.
    * 
@@ -102,8 +105,29 @@ public class MatchCalculation {
     return newPerson;
   }
   
-  public static ArrayList<Match> findMatches(MatchPerson person) {
+  /**
+   * Find a person's top 10 matches given an array to look from.
+   * 
+   * @param matcher person matching for
+   * @param people list of people to match with
+   * @return their top 10 matches
+   */
+  public static ArrayList<Match> findMatches(MatchPerson matcher, ArrayList<MatchPerson> people) {
+    PriorityQueue<Match> matches = new PriorityQueue<Match>();
+    for (MatchPerson matchee: people) {
+      Match match = makeMatch(matcher, matchee);
+    }
     return null;
+  }
+  
+  public static Match makeMatch(MatchPerson matcher, MatchPerson matchee) {
+    int matchCount = 0;
+    for (Integer question: matcher.getAnswers().keySet()) {
+      if (matcher.getAnswers().get(question).equals(matchee.getAnswers().get(question))) {
+        matchCount++;
+      }
+    }
+    return new Match(matcher, matchee, matchCount / QUESTION_AMOUNT);
   }
   
   
