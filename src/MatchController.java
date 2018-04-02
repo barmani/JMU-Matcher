@@ -23,10 +23,14 @@ public class MatchController {
       for (String[] arr: allAnswers) {
         allPeople.add(MatchCalculation.parseResponses(arr)); // fill in person objects
       }
+//      for (MatchPerson person: allPeople) {
+//        System.out.println("******************************");
+//        System.out.println(person.toString());
+//        System.out.println("******************************");
+//      }
+      // find matches
       for (MatchPerson person: allPeople) {
-        System.out.println("******************************");
-        System.out.println(person.toString());
-        System.out.println("******************************");
+        MatchCalculation.findMatches(person);
       }
     }
     

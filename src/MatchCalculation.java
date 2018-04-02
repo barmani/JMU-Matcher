@@ -77,9 +77,9 @@ public class MatchCalculation {
           break;
           
         case 6:
-          if (responses[i].startsWith("\"Romantic")) {
+          if (responses[i].startsWith("Romantic")) {
             newPerson.setMatchType(MatchType.ROMANTIC);
-          } else if (responses[i].startsWith("\"Friendships")) {
+          } else if (responses[i].startsWith("Friendships")) {
             newPerson.setMatchType(MatchType.FRIENDSHIP);
           } else {
             newPerson.setMatchType(MatchType.BIRTHDAY);
@@ -100,6 +100,10 @@ public class MatchCalculation {
       newPerson.setAnswers(answers);
     }
     return newPerson;
+  }
+  
+  public static ArrayList<Match> findMatches(MatchPerson person) {
+    return null;
   }
   
   

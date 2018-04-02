@@ -162,5 +162,16 @@ public class MatchPerson {
     }
     return builder.toString();
   }
+  
+  /**
+   * Determine if this person the same as another person in the system. Only test 
+   * email because people may enter survey again under a different name.
+   * 
+   * @param other other person
+   * @return whether they are equal
+   */
+  public boolean equals(MatchPerson other) {
+    return email.equals(other.email);
+  }
     
 }
