@@ -5,7 +5,7 @@
  * @author Brendan Armani
  * @version 1.0
  */
-public class Match implements Comparable {
+public class Match implements Comparable<Match> {
   private MatchPerson matcher;
   private MatchPerson matchee;
   private double percentage;
@@ -24,7 +24,7 @@ public class Match implements Comparable {
   }
   
   public String toString() {
-    return matchee.getName() + " with " + matcher.getName() + ": " + percentage;
+    return String.format("%s\t:%2.2f", matchee.getName(), percentage);
   }
   
   public double getPercentage() {
@@ -37,6 +37,7 @@ public class Match implements Comparable {
    * @param other Match to compare with
    * @return compare result
    */
+  @Override
   public int compareTo(Match other) {
     if (percentage < other.getPercentage()) {
       return -1;
@@ -46,4 +47,6 @@ public class Match implements Comparable {
       return 1;
     }
   }
+  
 }
+

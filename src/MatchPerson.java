@@ -175,5 +175,18 @@ public class MatchPerson {
   public boolean equals(MatchPerson other) {
     return email.equals(other.email);
   }
+  
+  /**
+   * Return the friendship matches as strings.
+   * 
+   * @return the string representation
+   */
+  public String friendshipMatchesToString() {
+    String str = "";
+    for (int i = 0; i < MATCH_ARRAY_LENGTH; i++) {
+      str += friendshipMatches[i].toString() + "\n";
+    }
+    return str;
+  }
     
 }
