@@ -3,6 +3,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.PriorityQueue;
 
@@ -16,6 +17,8 @@ import java.util.PriorityQueue;
 public class MatchCalculation {
 
   public static final int QUESTION_AMOUNT = 29;
+  
+  public static final int MATCH_ARRAY_LENGTH = 10;
   
   /**
    * Fill in the responses from the survey takers.
@@ -112,8 +115,9 @@ public class MatchCalculation {
    * @param people list of people to match with
    * @return their top 10 matches
    */
-  public static ArrayList<Match> findMatches(MatchPerson matcher, ArrayList<MatchPerson> people) {
+  public static Match[] findMatches(MatchPerson matcher, ArrayList<MatchPerson> people) {
     PriorityQueue<Match> matches = new PriorityQueue<Match>();
+    Match[] matchArr = new Match[MATCH_ARRAY_LENGTH];
     for (MatchPerson matchee: people) {
       if (!matchee.equals(matcher)) {
         Match match = makeMatch(matcher, matchee);
@@ -127,7 +131,11 @@ public class MatchCalculation {
         }
       }
     }
-    return null;
+    for (int i = MATCH_ARRAY_LENGTH - 1; i <= 0; i--) { // add results to array
+      matchArr[i] = matches.remove();
+    }
+    return matchArr;
+    
   }
   
   /**

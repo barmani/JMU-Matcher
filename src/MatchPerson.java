@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+
 import java.util.HashMap;
 
 /**
@@ -10,6 +10,8 @@ import java.util.HashMap;
  */
 public class MatchPerson {
   
+  public static final int MATCH_ARRAY_LENGTH = 10;
+
   // personal information as appears in form
   private String name;
   private String email;
@@ -20,9 +22,9 @@ public class MatchPerson {
   // match data
   private HashMap<Integer, Character> answers;
   private MatchType matchType;
-  private ArrayList<Match> bdayMatches;
-  private ArrayList<Match> friendshipMatches;
-  private ArrayList<Match> romanticMatches;
+  private Match[] bdayMatches;
+  private Match[] friendshipMatches;
+  private Match[] romanticMatches;
   
   /**
    * Default constructor. Makes "empty" MatchPerson object.
@@ -36,9 +38,9 @@ public class MatchPerson {
     setMatchType(matchType);
     
     setAnswers(new HashMap<Integer, Character>());
-    setBdayMatches(new ArrayList<Match>());
-    setFriendshipMatches(new ArrayList<Match>());
-    setRomanticMatches(new ArrayList<Match>()); 
+    setBdayMatches(new Match[MATCH_ARRAY_LENGTH]);
+    setFriendshipMatches(new Match[MATCH_ARRAY_LENGTH]);
+    setRomanticMatches(new Match[MATCH_ARRAY_LENGTH]); 
   }
   
   /**
@@ -61,9 +63,9 @@ public class MatchPerson {
     setMatchType(matchType);
     
     setAnswers(new HashMap<Integer, Character>());
-    setBdayMatches(new ArrayList<Match>());
-    setFriendshipMatches(new ArrayList<Match>());
-    setRomanticMatches(new ArrayList<Match>());    
+    setBdayMatches(new Match[MATCH_ARRAY_LENGTH]);
+    setFriendshipMatches(new Match[MATCH_ARRAY_LENGTH]);
+    setRomanticMatches(new Match[MATCH_ARRAY_LENGTH]);    
   }
   
   public HashMap<Integer, Character> getAnswers() {
@@ -122,27 +124,27 @@ public class MatchPerson {
     this.matchType = matchType;
   }
 
-  public ArrayList<Match> getBdayMatches() {
+  public Match[] getBdayMatches() {
     return bdayMatches;
   }
 
-  public void setBdayMatches(ArrayList<Match> bdayMatches) {
+  public void setBdayMatches(Match[] bdayMatches) {
     this.bdayMatches = bdayMatches;
   }
 
-  public ArrayList<Match> getFriendshipMatches() {
+  public Match[] getFriendshipMatches() {
     return friendshipMatches;
   }
 
-  public void setFriendshipMatches(ArrayList<Match> friendshipMatches) {
+  public void setFriendshipMatches(Match[] friendshipMatches) {
     this.friendshipMatches = friendshipMatches;
   }
 
-  public ArrayList<Match> getRomanticMatches() {
+  public Match[] getRomanticMatches() {
     return romanticMatches;
   }
 
-  public void setRomanticMatches(ArrayList<Match> romanticMatches) {
+  public void setRomanticMatches(Match[] romanticMatches) {
     this.romanticMatches = romanticMatches;
   }
   
