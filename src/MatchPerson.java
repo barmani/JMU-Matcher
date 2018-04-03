@@ -185,7 +185,22 @@ public class MatchPerson {
     String str = "";
     for (int i = 0; i < MATCH_ARRAY_LENGTH; i++) {
       if (friendshipMatches[i] != null) {
-        str +=  (i + 1) + ". " + friendshipMatches[i].toString() + "\n";
+        str += String.format("%2d. %s\n", (i + 1), friendshipMatches[i].toString());
+      }
+    }
+    return str;
+  }
+  
+  /**
+   * Return the romantic matches as strings.
+   * 
+   * @return the string representation
+   */
+  public String romanticMatchesToString() {
+    String str = "";
+    for (int i = 0; i < MATCH_ARRAY_LENGTH; i++) {
+      if (romanticMatches[i] != null) {
+        str +=  String.format("%2d. %s\n", (i + 1), romanticMatches[i].toString());
       }
     }
     return str;

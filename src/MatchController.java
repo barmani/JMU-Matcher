@@ -54,9 +54,21 @@ public class MatchController {
       // find matches
       for (MatchPerson person: allPeople) {
         person.setFriendshipMatches(MatchCalculation.findMatches(person, allPeople));
-        System.out.println("Matches for " + person.getName());
+        if (person.getPreference() == Preference.STRAIGHT) {
+          if (person.getGender() == Gender.FEMALE) {
+            person.setRomanticMatches(MatchCalculation.findMatches(person, straightMalePool));
+          } else if (person.getGender() == Gender.MALE) {
+            person.setRomanticMatches(MatchCalculation.findMatches(person, straightFemalePool));
+          }
+        } else if (person.getPreference() == Preference.BI) {
+          person.setRomanticMatches(person.getFriendshipMatches());
+        }
+        System.out.println("Friendship matches for " + person.getName());
         System.out.println(person.friendshipMatchesToString());
+        System.out.println("Romantic matches for " + person.getName());
+        System.out.println(person.romanticMatchesToString());
         System.out.println();
+        
       }
     }
     
