@@ -3,6 +3,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.PriorityQueue;
@@ -134,6 +135,7 @@ public class MatchCalculation {
     for (int i = MATCH_ARRAY_LENGTH - 1; i <= 0; i--) { // add results to array
       matchArr[i] = matches.remove();
     }
+    Arrays.sort(matchArr);
     return matchArr;
     
   }

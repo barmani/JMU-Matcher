@@ -5,7 +5,7 @@
  * @author Brendan Armani
  * @version 1.0
  */
-public class Match {
+public class Match implements Comparable {
   private MatchPerson matcher;
   private MatchPerson matchee;
   private double percentage;
@@ -29,5 +29,21 @@ public class Match {
   
   public double getPercentage() {
     return percentage;
+  }
+
+  /**
+   * Compare this match to another based on percentage of questions matched.
+   * 
+   * @param other Match to compare with
+   * @return compare result
+   */
+  public int compareTo(Match other) {
+    if (percentage < other.getPercentage()) {
+      return -1;
+    } else if (percentage == other.getPercentage()) {
+      return 0;
+    } else {
+      return 1;
+    }
   }
 }
