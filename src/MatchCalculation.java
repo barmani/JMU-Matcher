@@ -118,11 +118,11 @@ public class MatchCalculation {
    */
   public static Match[] findMatches(MatchPerson matcher, ArrayList<MatchPerson> people) {
     PriorityQueue<Match> matches = new PriorityQueue<Match>();
-    Match[] matchArr = new Match[MATCH_ARRAY_LENGTH];
+    Match[] matchArr;
     for (MatchPerson matchee: people) {
       if (!matchee.equals(matcher)) {
         Match match = makeMatch(matcher, matchee);
-        if (matches.size() < 10) {
+        if (matches.size() < MATCH_ARRAY_LENGTH) {
           matches.add(match);
         } else {
           if (match.getPercentage() > matches.peek().getPercentage()) {
@@ -132,10 +132,11 @@ public class MatchCalculation {
         }
       }
     }
-    for (int i = MATCH_ARRAY_LENGTH - 1; i <= 0; i--) { // add results to array
+    matchArr = new Match[matches.size()];
+    for (int i = matches.size() - 1; i >= 0; i--) { // add results to array
       matchArr[i] = matches.remove();
     }
-    Arrays.sort(matchArr);
+    Arrays.sort(matchArr, Collections.reverseOrder());
     return matchArr;
     
   }

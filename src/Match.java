@@ -24,7 +24,7 @@ public class Match implements Comparable<Match> {
   }
   
   public String toString() {
-    return String.format("%s\t:%2.2f", matchee.getName(), percentage);
+    return String.format("%-35s%%%2.2f", matchee.getName() + ":", percentage * 100);
   }
   
   public double getPercentage() {

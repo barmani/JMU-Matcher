@@ -184,7 +184,9 @@ public class MatchPerson {
   public String friendshipMatchesToString() {
     String str = "";
     for (int i = 0; i < MATCH_ARRAY_LENGTH; i++) {
-      str += friendshipMatches[i].toString() + "\n";
+      if (friendshipMatches[i] != null) {
+        str +=  (i + 1) + ". " + friendshipMatches[i].toString() + "\n";
+      }
     }
     return str;
   }

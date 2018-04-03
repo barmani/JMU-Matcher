@@ -46,14 +46,17 @@ public class MatchController {
         }
         
       }
-      for (MatchPerson person: allPeople) {
-        System.out.println("******************************");
-        System.out.println(person.toString());
-        System.out.println("******************************");
-      }
+//      for (MatchPerson person: allPeople) {
+//        System.out.println("******************************");
+//        System.out.println(person.toString());
+//        System.out.println("******************************");
+//      }
       // find matches
       for (MatchPerson person: allPeople) {
         person.setFriendshipMatches(MatchCalculation.findMatches(person, allPeople));
+        System.out.println("Matches for " + person.getName());
+        System.out.println(person.friendshipMatchesToString());
+        System.out.println();
       }
     }
     
