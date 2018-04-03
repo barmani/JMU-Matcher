@@ -26,4 +26,8 @@ public class Match {
   public String toString() {
     return matchee.getName() + " with " + matcher.getName() + ": " + percentage;
   }
+  
+  public double getPercentage() {
+    return percentage;
+  }
 }

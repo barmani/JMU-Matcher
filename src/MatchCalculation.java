@@ -117,12 +117,26 @@ public class MatchCalculation {
     for (MatchPerson matchee: people) {
       if (!matchee.equals(matcher)) {
         Match match = makeMatch(matcher, matchee);
-        System.out.println(match);
+        if (matches.size() < 10) {
+          matches.add(match);
+        } else {
+          if (match.getPercentage() > matches.peek().getPercentage()) {
+            matches.remove();
+            matches.add(match);
+          }
+        }
       }
     }
     return null;
   }
   
+  /**
+   * Make the match between two people.
+   * 
+   * @param matcher person matching for
+   * @param matchee person matcher matched with
+   * @return the match object
+   */
   public static Match makeMatch(MatchPerson matcher, MatchPerson matchee) {
     double matchCount = 0.0;
     for (Integer question: matcher.getAnswers().keySet()) {
@@ -132,7 +146,5 @@ public class MatchCalculation {
     }
     return new Match(matcher, matchee, matchCount / QUESTION_AMOUNT);
   }
-  
-  
-  
+
 }
