@@ -1,4 +1,6 @@
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -21,6 +23,8 @@ public class MatchController {
       ArrayList<MatchPerson> biPool = new ArrayList<MatchPerson>();
 
       File spreadsheet = new File(args[0]);
+      File dest = new File("matchResults.txt");
+      BufferedWriter writer = new BufferedWriter(new FileWriter(dest));
       // get answers in ArrayList from tsv
       ArrayList<String[]> allAnswers = MatchCalculation.fillAnswersArray(spreadsheet);
       String[] questions = allAnswers.get(0); // store questions titles (may or may not need)
@@ -63,13 +67,20 @@ public class MatchController {
         } else if (person.getPreference() == Preference.BI) {
           person.setRomanticMatches(person.getFriendshipMatches());
         }
-        System.out.println("Friendship matches for " + person.getName());
-        System.out.println(person.friendshipMatchesToString());
-        System.out.println("Romantic matches for " + person.getName());
-        System.out.println(person.romanticMatchesToString());
-        System.out.println();
         
+        writer.write("Friendship matches for " + person.getName() + "\n");
+        writer.write(person.friendshipMatchesToString() + "\n");
+        writer.write("Romantic matches for " + person.getName() + "\n");
+        writer.write(person.romanticMatchesToString() + "\n");
+        
+        
+//        System.out.println("Friendship matches for " + person.getName());
+//        System.out.println(person.friendshipMatchesToString());
+//        System.out.println("Romantic matches for " + person.getName());
+//        System.out.println(person.romanticMatchesToString());
+//        System.out.println();
       }
+      writer.close();
     }
     
   }
