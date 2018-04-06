@@ -1,4 +1,5 @@
 
+import java.time.LocalDate;
 import java.util.HashMap;
 
 /**
@@ -18,6 +19,7 @@ public class MatchPerson {
   private String birthday;
   private Gender gender;
   private Preference preference;
+  private LocalDate storedBirthday;
   
   // match data
   private HashMap<Integer, Character> answers;
@@ -32,7 +34,7 @@ public class MatchPerson {
   public MatchPerson() {
     setName("");
     setEmail("");
-    setBirthday(birthday);
+    setBirthday("");
     setGender(gender);
     setPreference(preference);
     setMatchType(matchType);
@@ -40,7 +42,8 @@ public class MatchPerson {
     setAnswers(new HashMap<Integer, Character>());
     setBdayMatches(new Match[MATCH_ARRAY_LENGTH]);
     setFriendshipMatches(new Match[MATCH_ARRAY_LENGTH]);
-    setRomanticMatches(new Match[MATCH_ARRAY_LENGTH]); 
+    setRomanticMatches(new Match[MATCH_ARRAY_LENGTH]);
+    setStoredBirthday(null);
   }
   
   /**
@@ -65,7 +68,11 @@ public class MatchPerson {
     setAnswers(new HashMap<Integer, Character>());
     setBdayMatches(new Match[MATCH_ARRAY_LENGTH]);
     setFriendshipMatches(new Match[MATCH_ARRAY_LENGTH]);
-    setRomanticMatches(new Match[MATCH_ARRAY_LENGTH]);    
+    setRomanticMatches(new Match[MATCH_ARRAY_LENGTH]);
+    LocalDate date = LocalDate.parse(birthday);
+    System.out.println(date);
+    setStoredBirthday(date);
+    
   }
   
   public HashMap<Integer, Character> getAnswers() {
@@ -96,8 +103,29 @@ public class MatchPerson {
     return birthday;
   }
 
+  /**
+   * Set the string birthday and the LocalDate birthday.
+   * @param birthday birthday as string
+   */
   public void setBirthday(String birthday) {
     this.birthday = birthday;
+    if (birthday != null && birthday.length() > 0) {
+      String[] monthDayYear = birthday.split("/");
+      String formattedDate = String.format("%04d-%02d-%02d", Integer.parseInt(monthDayYear[2]), 
+                                                             Integer.parseInt(monthDayYear[0]), 
+                                                             Integer.parseInt(monthDayYear[1]));
+      LocalDate date = LocalDate.parse(formattedDate);
+      setStoredBirthday(date);
+      System.out.println(getStoredBirthday());
+    }
+  }
+  
+  public LocalDate getStoredBirthday() {
+    return storedBirthday;
+  }
+
+  public void setStoredBirthday(LocalDate storedBirthday) {
+    this.storedBirthday = storedBirthday;
   }
 
   public Gender getGender() {
