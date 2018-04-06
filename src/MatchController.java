@@ -50,12 +50,6 @@ public class MatchController {
         }
         
       }
-//      for (MatchPerson person: allPeople) {
-//        System.out.println("******************************");
-//        System.out.println(person.toString());
-//        System.out.println("******************************");
-//      }
-      // find matches
       for (MatchPerson person: allPeople) {
         person.setFriendshipMatches(MatchCalculation.findMatches(person, allPeople));
         if (person.getPreference() == Preference.STRAIGHT) {
@@ -73,12 +67,6 @@ public class MatchController {
         writer.write("Romantic matches for " + person.getName() + "\n");
         writer.write(person.romanticMatchesToString() + "\n");
         
-        
-//        System.out.println("Friendship matches for " + person.getName());
-//        System.out.println(person.friendshipMatchesToString());
-//        System.out.println("Romantic matches for " + person.getName());
-//        System.out.println(person.romanticMatchesToString());
-//        System.out.println();
       }
       writer.close();
     }

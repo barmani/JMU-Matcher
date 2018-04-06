@@ -116,12 +116,12 @@ public class MatchCalculation {
    * @param people list of people to match with
    * @return their top 10 matches
    */
-  public static Match[] findMatches(MatchPerson matcher, ArrayList<MatchPerson> people) {
-    PriorityQueue<Match> matches = new PriorityQueue<Match>();
-    Match[] matchArr;
+  public static PersonalMatch[] findMatches(MatchPerson matcher, ArrayList<MatchPerson> people) {
+    PriorityQueue<PersonalMatch> matches = new PriorityQueue<PersonalMatch>();
+    PersonalMatch[] matchArr;
     for (MatchPerson matchee: people) {
       if (!matchee.equals(matcher)) {
-        Match match = makeMatch(matcher, matchee);
+        PersonalMatch match = makeMatch(matcher, matchee);
         if (matches.size() < MATCH_ARRAY_LENGTH) {
           matches.add(match);
         } else {
@@ -132,13 +132,44 @@ public class MatchCalculation {
         }
       }
     }
-    matchArr = new Match[matches.size()];
+    matchArr = new PersonalMatch[matches.size()];
     for (int i = matches.size() - 1; i >= 0; i--) { // add results to array
       matchArr[i] = matches.remove();
     }
     Arrays.sort(matchArr, Collections.reverseOrder());
-    return matchArr;
-    
+    return matchArr; 
+  }
+  
+  /**
+   * Find a person's top 10 birthday matches.
+   * 
+   * @param matcher person matching for
+   * @param people list of people to match with
+   * @return their top 10 matches
+   */
+  public static PersonalMatch[] findBirthdayMatches(MatchPerson matcher, 
+        ArrayList<MatchPerson> people) {
+    PriorityQueue<PersonalMatch> matches = new PriorityQueue<PersonalMatch>();
+    PersonalMatch[] matchArr;
+    for (MatchPerson matchee: people) {
+      if (!matchee.equals(matcher)) {
+        PersonalMatch match = makeMatch(matcher, matchee);
+        if (matches.size() < MATCH_ARRAY_LENGTH) {
+          matches.add(match);
+        } else {
+          if (match.getPercentage() > matches.peek().getPercentage()) {
+            matches.remove();
+            matches.add(match);
+          }
+        }
+      }
+    }
+    matchArr = new PersonalMatch[matches.size()];
+    for (int i = matches.size() - 1; i >= 0; i--) { // add results to array
+      matchArr[i] = matches.remove();
+    }
+    Arrays.sort(matchArr, Collections.reverseOrder());
+    return matchArr; 
   }
   
   /**
@@ -148,14 +179,14 @@ public class MatchCalculation {
    * @param matchee person matcher matched with
    * @return the match object
    */
-  public static Match makeMatch(MatchPerson matcher, MatchPerson matchee) {
+  public static PersonalMatch makeMatch(MatchPerson matcher, MatchPerson matchee) {
     double matchCount = 0.0;
     for (Integer question: matcher.getAnswers().keySet()) {
       if (matcher.getAnswers().get(question).equals(matchee.getAnswers().get(question))) {
         matchCount++;
       }
     }
-    return new Match(matcher, matchee, matchCount / QUESTION_AMOUNT);
+    return new PersonalMatch(matcher, matchee, matchCount / QUESTION_AMOUNT);
   }
 
 }

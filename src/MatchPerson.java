@@ -24,9 +24,9 @@ public class MatchPerson {
   // match data
   private HashMap<Integer, Character> answers;
   private MatchType matchType;
-  private Match[] bdayMatches;
-  private Match[] friendshipMatches;
-  private Match[] romanticMatches;
+  private BirthdayMatch[] bdayMatches;
+  private PersonalMatch[] friendshipMatches;
+  private PersonalMatch[] romanticMatches;
   
   /**
    * Default constructor. Makes "empty" MatchPerson object.
@@ -40,9 +40,9 @@ public class MatchPerson {
     setMatchType(matchType);
     
     setAnswers(new HashMap<Integer, Character>());
-    setBdayMatches(new Match[MATCH_ARRAY_LENGTH]);
-    setFriendshipMatches(new Match[MATCH_ARRAY_LENGTH]);
-    setRomanticMatches(new Match[MATCH_ARRAY_LENGTH]);
+    setBdayMatches(new BirthdayMatch[MATCH_ARRAY_LENGTH]);
+    setFriendshipMatches(new PersonalMatch[MATCH_ARRAY_LENGTH]);
+    setRomanticMatches(new PersonalMatch[MATCH_ARRAY_LENGTH]);
     setStoredBirthday(null);
   }
   
@@ -66,9 +66,9 @@ public class MatchPerson {
     setMatchType(matchType);
     
     setAnswers(new HashMap<Integer, Character>());
-    setBdayMatches(new Match[MATCH_ARRAY_LENGTH]);
-    setFriendshipMatches(new Match[MATCH_ARRAY_LENGTH]);
-    setRomanticMatches(new Match[MATCH_ARRAY_LENGTH]);
+    setBdayMatches(new BirthdayMatch[MATCH_ARRAY_LENGTH]);
+    setFriendshipMatches(new PersonalMatch[MATCH_ARRAY_LENGTH]);
+    setRomanticMatches(new PersonalMatch[MATCH_ARRAY_LENGTH]);
     LocalDate date = LocalDate.parse(birthday);
     System.out.println(date);
     setStoredBirthday(date);
@@ -116,7 +116,6 @@ public class MatchPerson {
                                                              Integer.parseInt(monthDayYear[1]));
       LocalDate date = LocalDate.parse(formattedDate);
       setStoredBirthday(date);
-      System.out.println(getStoredBirthday());
     }
   }
   
@@ -152,27 +151,27 @@ public class MatchPerson {
     this.matchType = matchType;
   }
 
-  public Match[] getBdayMatches() {
+  public BirthdayMatch[] getBdayMatches() {
     return bdayMatches;
   }
 
-  public void setBdayMatches(Match[] bdayMatches) {
+  public void setBdayMatches(BirthdayMatch[] bdayMatches) {
     this.bdayMatches = bdayMatches;
   }
 
-  public Match[] getFriendshipMatches() {
+  public PersonalMatch[] getFriendshipMatches() {
     return friendshipMatches;
   }
 
-  public void setFriendshipMatches(Match[] friendshipMatches) {
+  public void setFriendshipMatches(PersonalMatch[] friendshipMatches) {
     this.friendshipMatches = friendshipMatches;
   }
 
-  public Match[] getRomanticMatches() {
+  public PersonalMatch[] getRomanticMatches() {
     return romanticMatches;
   }
 
-  public void setRomanticMatches(Match[] romanticMatches) {
+  public void setRomanticMatches(PersonalMatch[] romanticMatches) {
     this.romanticMatches = romanticMatches;
   }
   
