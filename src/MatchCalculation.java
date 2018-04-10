@@ -2,6 +2,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -149,18 +150,25 @@ public class MatchCalculation {
    */
   public static BirthdayMatch[] findBirthdayMatches(MatchPerson matcher, 
         ArrayList<MatchPerson> people) {
-    ArrayList<BirthdayMatch> bdayMatches = new ArrayList<BirthdayMatch>();
+    PriorityQueue<BirthdayMatch> bdayMatches = new PriorityQueue<BirthdayMatch>();
     BirthdayMatch[] matchArr;
+    // we will compare dates with the current year because only day and month matter
     for (MatchPerson matchee: people) {
       if (!matchee.equals(matcher)) {
-
-      } else {
-        
+        BirthdayMatch bdayMatch = new BirthdayMatch(matcher, matchee);
+        if (bdayMatches.size() < MATCH_ARRAY_LENGTH) {
+          bdayMatches.add(bdayMatch);
+        } else {
+          if (bdayMatches.peek().compareTo(bdayMatch) < 0) {
+            bdayMatches.remove();
+            bdayMatches.add(bdayMatch);
+          }
+        }
       }
     }
     matchArr = new BirthdayMatch[bdayMatches.size()];
     for (int i = bdayMatches.size() - 1; i >= 0; i--) { // add results to array
-      matchArr[i] = bdayMatches.remove(0);
+      matchArr[i] = bdayMatches.remove();
     }
     Arrays.sort(matchArr, Collections.reverseOrder());
     return matchArr; 

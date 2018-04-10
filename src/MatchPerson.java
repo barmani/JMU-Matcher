@@ -232,5 +232,20 @@ public class MatchPerson {
     }
     return str;
   }
+  
+  /**
+   * Get birthday matches as strings.
+   * 
+   * @return matches as strings
+   */
+  public String birthdayMatchesToString() {
+    String str = "";
+    for (int i = 0; i < MATCH_ARRAY_LENGTH; i++) {
+      if (bdayMatches[i] != null) {
+        str += String.format("%2d. %s\n", (i + 1), bdayMatches[i].toString());
+      }
+    }
+    return str;
+  }
     
 }

@@ -6,8 +6,8 @@
  */
 public abstract class Match {
 
-  private MatchPerson matcher;
-  private MatchPerson matchee;
+  protected MatchPerson matcher;
+  protected MatchPerson matchee;
   
   public Match(MatchPerson matcher, MatchPerson matchee) {
     this.setMatcher(matcher);
