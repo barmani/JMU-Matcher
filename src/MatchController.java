@@ -33,20 +33,22 @@ public class MatchController {
         MatchPerson newPerson = MatchCalculation.parseResponses(arr);
         allPeople.add(newPerson); // fill in person objects
         // add to specific pool for romantic matches
-        if (newPerson.getPreference() == Preference.STRAIGHT) {
-          if (newPerson.getGender() == Gender.MALE) {
-            straightMalePool.add(newPerson);
+        if (newPerson.getMatchType() == MatchType.ROMANTIC) {
+          if (newPerson.getPreference() == Preference.STRAIGHT) {
+            if (newPerson.getGender() == Gender.MALE) {
+              straightMalePool.add(newPerson);
+            } else {
+              straightFemalePool.add(newPerson);
+            }
+          } else if (newPerson.getPreference() == Preference.GAY) {
+            if (newPerson.getGender() == Gender.MALE) {
+              gayMalePool.add(newPerson);
+            } else {
+              gayFemalePool.add(newPerson);
+            }
           } else {
-            straightFemalePool.add(newPerson);
+            biPool.add(newPerson);
           }
-        } else if (newPerson.getPreference() == Preference.GAY) {
-          if (newPerson.getGender() == Gender.MALE) {
-            gayMalePool.add(newPerson);
-          } else {
-            gayFemalePool.add(newPerson);
-          }
-        } else {
-          biPool.add(newPerson);
         }
         
       }

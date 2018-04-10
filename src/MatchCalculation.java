@@ -147,30 +147,25 @@ public class MatchCalculation {
    * @param people list of people to match with
    * @return their top 10 matches
    */
-  public static PersonalMatch[] findBirthdayMatches(MatchPerson matcher, 
+  public static BirthdayMatch[] findBirthdayMatches(MatchPerson matcher, 
         ArrayList<MatchPerson> people) {
-    PriorityQueue<PersonalMatch> matches = new PriorityQueue<PersonalMatch>();
-    PersonalMatch[] matchArr;
+    ArrayList<BirthdayMatch> bdayMatches = new ArrayList<BirthdayMatch>();
+    BirthdayMatch[] matchArr;
     for (MatchPerson matchee: people) {
       if (!matchee.equals(matcher)) {
-        PersonalMatch match = makeMatch(matcher, matchee);
-        if (matches.size() < MATCH_ARRAY_LENGTH) {
-          matches.add(match);
-        } else {
-          if (match.getPercentage() > matches.peek().getPercentage()) {
-            matches.remove();
-            matches.add(match);
-          }
-        }
+
+      } else {
+        
       }
     }
-    matchArr = new PersonalMatch[matches.size()];
-    for (int i = matches.size() - 1; i >= 0; i--) { // add results to array
-      matchArr[i] = matches.remove();
+    matchArr = new BirthdayMatch[bdayMatches.size()];
+    for (int i = bdayMatches.size() - 1; i >= 0; i--) { // add results to array
+      matchArr[i] = bdayMatches.remove(0);
     }
     Arrays.sort(matchArr, Collections.reverseOrder());
     return matchArr; 
   }
+
   
   /**
    * Make the match between two people.
