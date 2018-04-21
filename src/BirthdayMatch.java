@@ -18,10 +18,10 @@ public class BirthdayMatch extends Match implements Comparable<BirthdayMatch> {
     LocalDate otherDate = match.getMatchee().getStoredBirthday();
     LocalDate matcherDate = matcher.getStoredBirthday();
     
-    int monthDistanceMatchee = matcherDate.getMonthValue() - matcheeDate.getMonthValue();
-    int monthDistanceOther = matcherDate.getMonthValue() - otherDate.getMonthValue();
-    int dayDistanceMatchee = matcherDate.getDayOfMonth() - matcheeDate.getDayOfMonth();
-    int dayDistanceOther = matcherDate.getDayOfMonth() - otherDate.getDayOfMonth();
+    int monthDistanceMatchee = Math.abs(matcherDate.getMonthValue() - matcheeDate.getMonthValue());
+    int monthDistanceOther = Math.abs(matcherDate.getMonthValue() - otherDate.getMonthValue());
+    int dayDistanceMatchee = Math.abs(matcherDate.getDayOfMonth() - matcheeDate.getDayOfMonth());
+    int dayDistanceOther = Math.abs(matcherDate.getDayOfMonth() - otherDate.getDayOfMonth());
     
     if (monthDistanceMatchee < monthDistanceOther) { // make opposite for min heap
       return 1;

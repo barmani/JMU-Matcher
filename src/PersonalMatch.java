@@ -21,7 +21,8 @@ public class PersonalMatch extends Match implements Comparable<PersonalMatch> {
   }
   
   public String toString() {
-    return String.format("%-35s%%%2.2f", super.getMatchee().getName(), percentage * 100);
+    //return String.format("%-35s%%%2.2f", super.getMatchee().getName(), percentage * 100);
+    return String.format("%-35s", super.getMatchee().getName());
   }
   
   public double getPercentage() {

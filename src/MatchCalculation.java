@@ -159,7 +159,7 @@ public class MatchCalculation {
         if (bdayMatches.size() < MATCH_ARRAY_LENGTH) {
           bdayMatches.add(bdayMatch);
         } else {
-          if (bdayMatches.peek().compareTo(bdayMatch) < 0) {
+          if (bdayMatches.peek().compareTo(bdayMatch) > 0) {
             bdayMatches.remove();
             bdayMatches.add(bdayMatch);
           }

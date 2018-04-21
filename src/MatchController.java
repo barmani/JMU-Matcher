@@ -50,7 +50,6 @@ public class MatchController {
             biPool.add(newPerson);
           }
         }
-        
       }
       for (MatchPerson person: allPeople) {
         person.setFriendshipMatches(MatchCalculation.findMatches(person, allPeople));
@@ -63,9 +62,9 @@ public class MatchController {
         } else if (person.getPreference() == Preference.BI) {
           person.setRomanticMatches(person.getFriendshipMatches());
         }        
-        person.setBdayMatches(MatchCalculation.findBirthdayMatches(person, allPeople));
-        writer.write("Birthday matches for " + person.getName() + " " 
-                        + person.getBirthday() + "\n");
+//        person.setBdayMatches(MatchCalculation.findBirthdayMatches(person, allPeople));
+//        writer.write("Birthday matches for " + person.getName() + " " 
+//                        + person.getBirthday() + "\n");
         writer.write(person.birthdayMatchesToString() + "\n");
         writer.write("Friendship matches for " + person.getName() + "\n");
         writer.write(person.friendshipMatchesToString() + "\n");
